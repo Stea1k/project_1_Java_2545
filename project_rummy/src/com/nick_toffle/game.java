@@ -19,6 +19,7 @@ public class game {
             hand computer = new hand("computer");
             player.getCards().add(game_start.draw());
             System.out.println(player.getCards());
+            System.out.println(Integer.toString(game_start.getdeck().size()));
         }
     }
 }

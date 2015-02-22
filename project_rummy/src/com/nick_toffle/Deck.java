@@ -8,12 +8,17 @@ class Deck{
     private String game;
 
     public Deck(String start){
-        mkdeck();
-        setGame(start);
+        this.deck = new LinkedList<String[]>();
+        this.setdeck();
+        this.game = start;
     }
 
     public void setGame(String name){
         this.game = name;
+    }
+
+    public LinkedList<String[]> getdeck(){
+        return this.deck;
     }
 
     public String getGame() {
@@ -27,13 +32,11 @@ class Deck{
             "Heart","Diamond","CLub","Spade"
     };
 
-    public void mkdeck(){
-        if(this.deck.size() == 0){
-            for(int x = 0; x < 4; x ++){
-                for(int y = 0; y < 13; y ++){
-                    String[] newCard = {value[y],suit[x]};
-                    this.deck.add(newCard);
-                }
+    public void setdeck(){
+        for(int x = 0; x < 4; x ++){
+            for(int y = 0; y < 13; y ++){
+                String[] newCard = {value[y],suit[x]};
+                this.deck.add(newCard);
             }
         }
     }
