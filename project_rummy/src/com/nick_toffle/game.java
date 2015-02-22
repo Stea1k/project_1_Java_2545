@@ -13,11 +13,12 @@ public class game {
         if(start.equals("n")){
             System.out.println("Thanks for your time!");
         }
-        else if(start.equals("y")){
+        else if(start.equals("y")) {
             Deck game_start = new Deck("game1");
             hand player = new hand("player1");
             hand computer = new hand("computer");
+            player.getCards().add(game_start.draw());
+            System.out.println(player.getCards());
         }
-
     }
 }

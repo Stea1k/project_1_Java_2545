@@ -23,4 +23,5 @@ public class hand {
     public void setHand_cards(){
         this.hand_cards = new LinkedList<String[]>();
     }
+    public LinkedList<String[]> getCards() {return this.hand_cards;}
 }
