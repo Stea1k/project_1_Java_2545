@@ -1,6 +1,7 @@
 package com.nick_toffle;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 class Deck{
     private LinkedList<String[]> deck;
@@ -35,6 +36,14 @@ class Deck{
                 }
             }
         }
+    }
+
+    public String[] draw(){
+        Random r = new Random();
+        int another = r.nextInt(this.deck.size());
+        String[] new_card = this.deck.get(another);
+        this.deck.remove(another);
+        return new_card;
     }
 }
 

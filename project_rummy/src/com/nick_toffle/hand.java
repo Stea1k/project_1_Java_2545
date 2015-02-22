@@ -17,7 +17,7 @@ public class hand {
     public void setHand(String name){
         this.player = name;
     }
-    public String getHand(){
+    public String getplayer(){
         return this.player;
     }
     public void setHand_cards(){
