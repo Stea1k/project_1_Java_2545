@@ -11,7 +11,7 @@ public class hand {
 
     public hand(String name){
         setHand(name);
-        this.hand_cards = new LinkedList<String[]>();
+        setHand_cards();
     }
 
     public void setHand(String name){
@@ -19,5 +19,8 @@ public class hand {
     }
     public String getHand(){
         return this.player;
+    }
+    public void setHand_cards(){
+        this.hand_cards = new LinkedList<String[]>();
     }
 }

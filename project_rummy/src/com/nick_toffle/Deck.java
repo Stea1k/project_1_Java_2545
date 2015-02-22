@@ -6,6 +6,11 @@ class Deck{
     private LinkedList<String[]> deck;
     private String game;
 
+    public Deck(String start){
+        mkdeck();
+        setGame(start);
+    }
+
     public void setGame(String name){
         this.game = name;
     }
@@ -20,10 +25,6 @@ class Deck{
     public String[] suit = {
             "Heart","Diamond","CLub","Spade"
     };
-
-    public Deck(){
-        this.deck = new LinkedList<String[]>();
-    }
 
     public void mkdeck(){
         if(this.deck.size() == 0){
