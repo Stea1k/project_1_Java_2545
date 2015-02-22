@@ -7,9 +7,17 @@ import java.util.LinkedList;
  */
 public class hand {
     private String player;
-    private LinkedList<String[]> hand;
+    private LinkedList<String[]> hand_cards;
+
+    public hand(String name){
+        setHand(name);
+        this.hand_cards = new LinkedList<String[]>();
+    }
 
     public void setHand(String name){
         this.player = name;
+    }
+    public String getHand(){
+        return this.player;
     }
 }
