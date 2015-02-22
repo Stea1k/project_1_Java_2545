@@ -4,6 +4,16 @@ import java.util.LinkedList;
 
 class Deck{
     private LinkedList<String[]> deck;
+    private String game;
+
+    public void setGame(String name){
+        this.game = name;
+    }
+
+    public String getGame() {
+        return this.game;
+    }
+
     public String[] value = {
             "2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"
     };
