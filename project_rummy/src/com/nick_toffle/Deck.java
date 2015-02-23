@@ -29,7 +29,7 @@ class Deck{
             "2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"
     };
     public String[] suit = {
-            "Heart","Diamond","CLub","Spade"
+            "Heart","Diamond","Club","Spade"
     };
 
     public void setdeck(){

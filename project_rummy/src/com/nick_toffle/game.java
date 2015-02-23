@@ -16,10 +16,20 @@ public class game {
         else if(start.equals("y")) {
             Deck game_start = new Deck("game1");
             hand player = new hand("player1");
-            hand computer = new hand("computer");
-            player.getCards().add(game_start.draw());
-            System.out.println(player.getCards());
+//            hand computer = new hand("computer");
+            for(int x = 0; x < 5; x ++){
+                player.getCards().add(game_start.draw());
+            }
+            player.seeHand();
+            System.out.println();
             System.out.println(Integer.toString(game_start.getdeck().size()));
         }
     }
+    public static Integer handSize(hand name){
+        return name.getCards().size();
+    }
+
+//    public void handOut(hand name){
+//        System.out.println(name.getplayer() + " has " + Integer.toString(handSize(name)) + " cards in hand.");
+//    }
 }
