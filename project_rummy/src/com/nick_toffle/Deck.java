@@ -28,6 +28,15 @@ class Deck{
     public String[] value = {
             "2","3","4","5","6","7","8","9","10","Jack","Queen","King","Ace"
     };
+    public Integer getValue(String s){
+        int v = 0;
+        for(int x = 0; x < value.length; x ++){
+            if(s.equals(value[x])){
+                v += x;
+            }
+        }
+        return v;
+    }
     public String[] suit = {
             "Heart","Diamond","Club","Spade"
     };

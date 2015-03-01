@@ -21,19 +21,21 @@ public class hand {
     public String getplayer(){
         return this.player;
     }
+
     public void setHand_cards(){
         this.hand_cards = new LinkedList<String[]>();
     }
 
     public LinkedList<String[]> getCards() {return this.hand_cards;}
 
-
     public void seeHand(){
         for(int x = 0; x < this.getCards().size(); x ++){
             String[] view = this.getCards().get(x);
             for(int v = 0; v < view.length; v ++){
                 System.out.print("| " + view[v] + " |");
-                System.out.println();
+                if(v%2 != 0){
+                    System.out.println();
+                }
             }
         }
     }
