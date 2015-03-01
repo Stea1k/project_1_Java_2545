@@ -29,7 +29,7 @@ public class meld {
             * find these value by iterating through the card value list in Deck.java and return the placement of the card as the card value.
             * If largest - smallest != (this.melds.size() - 1) then the meld is not valid.
             * otherwise the meld is valid.*/
-            
+
         }
     }
     public meld(){
