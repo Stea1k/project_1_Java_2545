@@ -5,12 +5,15 @@ import java.util.LinkedList;
 
 /**
  * Created by waffle on 3/1/15.
+ * This is the discard pile class. It provides the methods necessary for viewing and managing the discard pile.
  */
 public class discard {
     private LinkedList<card> discards;
+
     public void setDiscards(){
         this.discards = new LinkedList<card>();
     }
+
     public card seeTop(){
         card top = this.discards.peek();
         return top;
@@ -29,7 +32,6 @@ public class discard {
             }
         }
     }
-
     public discard(){
         setDiscards();
     }

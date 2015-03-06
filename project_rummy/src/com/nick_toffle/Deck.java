@@ -3,13 +3,17 @@ package com.nick_toffle;
 import java.util.LinkedList;
 import java.util.Random;
 
+/*
+* This is the deck class. many of the more basic methods for creating, storing, and managing a deck are in here.
+* */
+
 class Deck{
     private LinkedList<card> deck;
     private String game;
 
     public Deck(String start){
         this.deck = new LinkedList<card>();
-        this.setdeck();
+        this.setNewdeck();
         this.game = start;
     }
 
@@ -19,6 +23,9 @@ class Deck{
 
     public LinkedList<card> getdeck(){
         return this.deck;
+    }
+    public void setDeck(LinkedList<card> d){
+        this.deck = d;
     }
 
     public String getGame() {
@@ -43,7 +50,7 @@ class Deck{
         return v;
     }
 
-    public void setdeck(){
+    public void setNewdeck(){
         for(int x = 0; x < 4; x ++){
             for(int y = 0; y < 13; y ++){
                 card newCard = new card(value[y],suit[x]);

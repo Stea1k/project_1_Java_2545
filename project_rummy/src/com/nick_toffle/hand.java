@@ -1,17 +1,22 @@
 package com.nick_toffle;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
  * Created by waffle on 2/21/15.
+ *This class contains the player-specific methods and hand-related methods.
  */
+
 public class hand {
     private String player;
     private LinkedList<card> hand_cards;
+    private ArrayList<meld> meld_stack;
 
     public hand(String name){
         setHand(name);
         setHand_cards();
+        setMeld_stack();
     }
 
     public void setHand(String name){
@@ -28,14 +33,17 @@ public class hand {
 
     public LinkedList<card> getCards() {return this.hand_cards;}
 
-//    public Integer getCardValue(String s){
-//
-//    }
+    public void setMeld_stack(){
+        this.meld_stack = new ArrayList<meld>();
+    }
+    public ArrayList<meld> getMeld_stack(){
+        return this.meld_stack;
+    }
 
     public void seeHand(){
         for(int x = 0; x < this.getCards().size(); x ++){
             card view = this.getCards().get(x);
-            System.out.print(view.getValue() + " | " + view.getSuit());
+            System.out.print(view.getCardValue() + " | " + view.getCardSuit());
             }
         System.out.println();
     }

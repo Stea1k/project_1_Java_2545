@@ -2,6 +2,7 @@ package com.nick_toffle;
 
 /**
  * Created by waffle on 2/21/15.
+ * This class contains all card-specific methods.
  */
 
 class card{

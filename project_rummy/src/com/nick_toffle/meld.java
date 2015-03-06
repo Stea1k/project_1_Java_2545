@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 /**
  * Created by waffle on 3/1/15.
+ * This class involves the methods necessary for creating and testing melds.
  */
 public class meld {
     protected ArrayList<card> melds;
