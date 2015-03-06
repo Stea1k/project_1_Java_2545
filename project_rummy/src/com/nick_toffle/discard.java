@@ -7,16 +7,16 @@ import java.util.LinkedList;
  * Created by waffle on 3/1/15.
  */
 public class discard {
-    private LinkedList<String[]> discards;
+    private LinkedList<card> discards;
     public void setDiscards(){
-        this.discards = new LinkedList<String[]>();
+        this.discards = new LinkedList<card>();
     }
-    public String[] seeTop(){
-        String[] top = this.discards.peek();
+    public card seeTop(){
+        card top = this.discards.peek();
         return top;
     }
-    public String[] drawDiscard(){
-        String[] top = this.discards.pop();
+    public card drawDiscard(){
+        card top = this.discards.pop();
         return top;
     }
     public void dropCard(Integer i,HashMap<Integer, String[]> map){

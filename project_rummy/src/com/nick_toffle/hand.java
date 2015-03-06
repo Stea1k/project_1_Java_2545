@@ -7,7 +7,7 @@ import java.util.LinkedList;
  */
 public class hand {
     private String player;
-    private LinkedList<String[]> hand_cards;
+    private LinkedList<card> hand_cards;
 
     public hand(String name){
         setHand(name);
@@ -23,20 +23,20 @@ public class hand {
     }
 
     public void setHand_cards(){
-        this.hand_cards = new LinkedList<String[]>();
+        this.hand_cards = new LinkedList<card>();
     }
 
-    public LinkedList<String[]> getCards() {return this.hand_cards;}
+    public LinkedList<card> getCards() {return this.hand_cards;}
+
+//    public Integer getCardValue(String s){
+//
+//    }
 
     public void seeHand(){
         for(int x = 0; x < this.getCards().size(); x ++){
-            String[] view = this.getCards().get(x);
-            for(int v = 0; v < view.length; v ++){
-                System.out.print("| " + view[v] + " |");
-                if(v%2 != 0){
-                    System.out.println();
-                }
+            card view = this.getCards().get(x);
+            System.out.print(view.getValue() + " | " + view.getSuit());
             }
-        }
+        System.out.println();
     }
 }
