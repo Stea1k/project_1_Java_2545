@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 
 //game
-public class game {
+public class Game {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         System.out.println("Would you like to start? y/n");
@@ -40,19 +40,20 @@ public class game {
             }
 
             while (true) {
-                turnCounter ++;
-                for(Player p: order){
-                    if(p.equals(player1)){
+                turnCounter++;
+                for (Player p : order) {
+                    if (p.equals(player1)) {
                         //TODO human turn order
-                    }
-                    else {//TODO AI turn order
+                    } else {//TODO AI turn order
                     }
                 }
 
                 System.out.println();
-            System.out.println(Integer.toString(game_start.getdeck().size()));
+                System.out.println(Integer.toString(game_start.getdeck().size()));
+            }
         }
     }
+
 
     //given a player and a deck, adds a card from said deck to the hand of said player.
     public void player_drawFromDeck(Player p, Deck d){
