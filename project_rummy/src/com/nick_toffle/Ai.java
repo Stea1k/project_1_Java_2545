@@ -12,5 +12,8 @@ public class Ai extends Player{
         setMeld_stack();
     }
 
+    public static void cpuTurn(){
+        //TODO
+    }
 }
 

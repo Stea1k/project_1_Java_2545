@@ -9,12 +9,12 @@ import java.util.Random;
 
 class Deck{
     // Deck class is composed of a linked list of cards and a name suing a string.
-    private LinkedList<card> deck;
+    private LinkedList<Card> deck;
     private String game;
 
     //deck constructor
     public Deck(String start){
-        this.deck = new LinkedList<card>();
+        this.deck = new LinkedList<Card>();
         this.setNewdeck();
         this.game = start;
     }
@@ -25,12 +25,12 @@ class Deck{
     }
 
     //returns the deck list of the given deck
-    public LinkedList<card> getdeck(){
+    public LinkedList<Card> getdeck(){
         return this.deck;
     }
 
     //sets the given deck list to another deck list.
-    public void setDeck(LinkedList<card> d){
+    public void setDeck(LinkedList<Card> d){
         this.deck = d;
     }
 
@@ -64,17 +64,17 @@ class Deck{
     public void setNewdeck(){
         for(int x = 0; x < 4; x ++){
             for(int y = 0; y < 13; y ++){
-                card newCard = new card(value[y],suit[x]);
+                Card newCard = new Card(value[y],suit[x]);
                 this.deck.add(newCard);
             }
         }
     }
 
     //draws a card from the given deck and removes it from the deck list.
-    public card draw(){
+    public Card draw(){
         Random r = new Random();
         int another = r.nextInt(this.deck.size());
-        card new_card = this.deck.get(another);
+        Card new_card = this.deck.get(another);
         this.deck.remove(another);
         return new_card;
     }

@@ -3,10 +3,10 @@ package com.nick_toffle;
 /**
  * Created by waffle on 3/7/15.
  */
-public class human extends Player{
+public class Human extends Player{
 
     //hand constructor.
-    public human(String name) {
+    public Human(String name) {
         setHand(name);
         setHand_cards();
         setMeld_stack();

@@ -7,24 +7,24 @@ import java.util.LinkedList;
  * Created by waffle on 3/1/15.
  * This class involves the methods necessary for creating and testing melds.
  */
-public class meld {
+public class Meld {
     //the meld class is built of an ArrayList of cards.
-    protected ArrayList<card> melds;
+    protected ArrayList<Card> melds;
     //sets the meld object
     public void setMelds(){
-        this.melds = new ArrayList<card>();
+        this.melds = new ArrayList<Card>();
     }
     //returns a meld
-    public ArrayList<card> getMeld(){
+    public ArrayList<Card> getMeld(){
         return this.melds;
     }
 
     //adds a card to a possible meld
-    public void buildMeld(card c){
+    public void buildMeld(Card c){
         this.melds.add(c);
     }
     //gets a card from a meld
-    public card getCard(int c){
+    public Card getCard(int c){
         return this.melds.get(c);
     }
     //checks if the possible meld is a valid meld
@@ -59,7 +59,7 @@ public class meld {
     }
     //Checks if a card set is valid.
     public Boolean checkSet(){
-        card check = this.getCard(0);
+        Card check = this.getCard(0);
         boolean test = true;
         for(int x = 0; x<this.melds.size(); x ++){
             if(this.getCard(x).getCardValue() != check.getCardValue()){
@@ -69,7 +69,7 @@ public class meld {
         }
         return test;
     }
-    public meld(){
-        this.melds = new ArrayList<card>();
+    public Meld(){
+        this.melds = new ArrayList<Card>();
     }
 }

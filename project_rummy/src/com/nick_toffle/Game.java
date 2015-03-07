@@ -20,29 +20,33 @@ public class game {
             System.out.println("Thanks for your time!");
         } else if (start.equals("y")) {
             Deck game_start = new Deck("game1");
-            discard discardPile = new discard();
-            hand player = new hand("player1");
-            hand computer = new hand("computer");
+            Discard discardPile = new Discard();
+            Human player1 = new Human("player1");
+            Ai computer = new Ai();
             for (int x = 0; x < 5; x++) {
-                player.getCards().put(x, game_start.draw());
+                player1.getCards().put(x, game_start.draw());
                 computer.getCards().put(x, game_start.draw());
             }
             discardPile.addCard(game_start.draw());
             int turnCounter = 0;
             int first = firstPlayer();
-            ArrayList<hand> order = new ArrayList<hand>();
+            ArrayList<Player> order = new ArrayList<Player>();
             if (first < 1) {
-                order.add(player);
+                order.add(player1);
                 order.add(computer);
             } else {
                 order.add(computer);
-                order.add(player);
+                order.add(player1);
             }
 
             while (true) {
                 turnCounter ++;
-                for(hand p: order){
-                    if(p.equals())
+                for(Player p: order){
+                    if(p.equals(player1)){
+                        //TODO human turn order
+                    }
+                    else {//TODO AI turn order
+                    }
                 }
 
                 System.out.println();
@@ -51,20 +55,20 @@ public class game {
     }
 
     //given a player and a deck, adds a card from said deck to the hand of said player.
-    public void player_drawFromDeck(hand p, Deck d){
+    public void player_drawFromDeck(Player p, Deck d){
         p.getCards().put(p.getCards().size()+1, d.draw());
     }
 
     //given a player hand and a discard pile, place a card from said discard pile into said player's hand.
-    public void player_drawFromDiscard(hand p, discard d){
+    public void player_drawFromDiscard(Player p, Discard d){
         p.getCards().put(p.getCards().size()+1,d.drawDiscard());
     }
 
     //given a player's hand and a discard pile, move a card from said player's hand into said discard pile.
-    public void human_discard(hand p, discard d){
-        HashMap<Integer,card> h = p.getCards();
+    public void human_discard(Player p, Discard d){
+        HashMap<Integer,Card> h = p.getCards();
         for(int key: h.keySet()){
-            card c = h.get(key);
+            Card c = h.get(key);
             System.out.println(Integer.toString(key) + " | " + c.getCardValue() +" of " + c.getCardSuit());
         }
         System.out.println("please enter the key of the card to be discarded.");
@@ -80,7 +84,7 @@ public class game {
         }
     //TODO add
     //returns a player's hand size as an integer.
-    public static Integer handSize(hand name){
+    public static Integer handSize(Player name){
         return name.getCards().size();
     }
 }

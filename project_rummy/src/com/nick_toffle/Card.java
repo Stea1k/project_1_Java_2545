@@ -5,7 +5,7 @@ package com.nick_toffle;
  * This class contains all card-specific methods.
  */
 
-class card{
+class Card{
     //the card class has the following traits:
     private String Cvalue;
     private String Csuit;
@@ -31,7 +31,7 @@ class card{
     }
 
     //Card constructor.
-    public card(String v,String s){
+    public Card(String v,String s){
         this.Cvalue = v;
         this.Csuit = s;
     }
