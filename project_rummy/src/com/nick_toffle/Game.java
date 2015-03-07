@@ -9,7 +9,7 @@ import java.util.Scanner;
  * Created by waffle on 2/22/15.
  * This class is the main game class. It is used largely for testing code and testing the game's operations.
  */
-
+//this is a test
 //game
 public class Game {
     public static void main(String[] args) {
