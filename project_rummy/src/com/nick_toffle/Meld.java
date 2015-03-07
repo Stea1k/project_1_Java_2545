@@ -69,6 +69,7 @@ public class Meld {
         }
         return test;
     }
+    //generates a new null meld (meld contructor)
     public Meld(){
         this.melds = new ArrayList<Card>();
     }

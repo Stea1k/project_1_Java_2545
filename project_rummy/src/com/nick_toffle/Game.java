@@ -44,12 +44,13 @@ public class Game {
                 for (Player p : order) {
                     if (p.equals(player1)) {
                         //TODO human turn order
-                    } else {//TODO AI turn order
+                    } else {
+                        //TODO AI turn order
                     }
                 }
 
-                System.out.println();
-                System.out.println(Integer.toString(game_start.getdeck().size()));
+//                System.out.println();
+//                System.out.println(Integer.toString(game_start.getdeck().size()));
             }
         }
     }
@@ -83,7 +84,7 @@ public class Game {
         goesFirst = r.nextInt(2);
         return goesFirst;
         }
-    //TODO add
+    //TODO methods that iterate through human and AI turn order.
     //returns a player's hand size as an integer.
     public static Integer handSize(Player name){
         return name.getCards().size();
