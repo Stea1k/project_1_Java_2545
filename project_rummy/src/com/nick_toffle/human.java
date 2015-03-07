@@ -3,14 +3,13 @@ package com.nick_toffle;
 /**
  * Created by waffle on 3/7/15.
  */
-public class Ai extends Player{
+public class human extends Player{
 
-
-    public Ai() {
-        setHand("AI");
+    //hand constructor.
+    public human(String name) {
+        setHand(name);
         setHand_cards();
         setMeld_stack();
     }
 
 }
-
