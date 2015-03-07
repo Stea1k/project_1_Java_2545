@@ -8,30 +8,41 @@ import java.util.LinkedList;
  * This is the discard pile class. It provides the methods necessary for viewing and managing the discard pile.
  */
 public class discard {
+    //the discard pile is simply a linked card list.
     private LinkedList<card> discards;
 
+    //sets the discards as a new linked list of cards.
     public void setDiscards(){
         this.discards = new LinkedList<card>();
     }
 
+    //returns the value and suit of the top card of the given discard pile.
     public card seeTop(){
         card top = this.discards.peek();
         return top;
     }
+
+    //pops the top card from the given discard pile.
     public card drawDiscard(){
         card top = this.discards.pop();
         return top;
     }
-    public void dropCard(Integer i,HashMap<Integer, String[]> map){
+    public void addCard(card c){
+        this.discards.add(c);
+    }
+
+    //method for discarding a card from a player's hand.
+    public void dropCard(Integer i,HashMap<Integer, card> map){
         for(int key: map.keySet()){
             if(i == key){
-                String[] newDiscard = new String[2];
-                newDiscard[0] = map.get(i)[0];
-                newDiscard[1] = map.get(i)[1];
+                card newDiscard = new card(map.get(i).getCardValue(),map.get(i).getCardSuit());
+                this.addCard(newDiscard);
                 map.remove(key);
             }
         }
     }
+
+    //discard constructor.
     public discard(){
         setDiscards();
     }

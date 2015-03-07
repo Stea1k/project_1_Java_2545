@@ -8,6 +8,7 @@ import java.util.LinkedList;
  * This class involves the methods necessary for creating and testing melds.
  */
 public class meld {
+    //the meld class is built of an ArrayList of cards.
     protected ArrayList<card> melds;
     //sets the meld object
     public void setMelds(){
@@ -44,6 +45,7 @@ public class meld {
             return true;
         }else return false;
     }
+    //Checks if a card set is valid.
     public Boolean checkSet(){
         card check = this.getCard(0);
         boolean test = true;
