@@ -18,6 +18,7 @@ public class meld {
     public ArrayList<card> getMeld(){
         return this.melds;
     }
+
     //adds a card to a possible meld
     public void buildMeld(card c){
         this.melds.add(c);
@@ -27,23 +28,34 @@ public class meld {
         return this.melds.get(c);
     }
     //checks if the possible meld is a valid meld
+    //first validates the run by suit, then validates by card value.
     public Boolean checkRun(Deck d){
-        int largest = d.getValue(getCard(0).getCardValue());
-        int smallest = d.getValue(getCard(0).getCardValue());
-        int counter = 0;
-        for(int x = 0; x < this.melds.size();x ++){
-            counter ++;
-            int g = d.getValue(getCard(x).getCardValue());
-            if(g < smallest){
-                smallest = g;
-            }
-            else if(g > largest){
-                largest = g;
+        String s = this.getCard(0).getCardSuit();
+        int t = 0;
+        for(int x = 1; x < this.melds.size(); x ++) {
+            if (!s.equals(this.getCard(x).getCardSuit())) {
+                t++;
             }
         }
-        if(largest - smallest != (counter - 1)){
-            return true;
-        }else return false;
+        if(t>0){
+            return false;
+        }else {
+            int largest = d.getValue(getCard(0).getCardValue());
+            int smallest = d.getValue(getCard(0).getCardValue());
+            int counter = 0;
+            for (int x = 0; x < this.melds.size(); x++) {
+                counter++;
+                int g = d.getValue(getCard(x).getCardValue());
+                if (g < smallest) {
+                    smallest = g;
+                } else if (g > largest) {
+                    largest = g;
+                }
+            }
+            if (largest - smallest != (counter - 1)) {
+                return true;
+            } else return false;
+        }
     }
     //Checks if a card set is valid.
     public Boolean checkSet(){

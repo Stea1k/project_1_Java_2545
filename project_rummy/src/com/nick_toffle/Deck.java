@@ -54,7 +54,7 @@ class Deck{
         int v = 0;
         for(int x = 0; x < value.length; x ++){
             if(s.equals(value[x])){
-                v += x;
+                v = x;
             }
         }
         return v;

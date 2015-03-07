@@ -22,6 +22,9 @@ public class discard {
         return top;
     }
 
+    public LinkedList<card> getDiscards(){
+        return this.discards;
+    }
     //pops the top card from the given discard pile.
     public card drawDiscard(){
         card top = this.discards.pop();

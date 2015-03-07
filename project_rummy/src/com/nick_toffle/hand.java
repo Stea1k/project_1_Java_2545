@@ -1,6 +1,7 @@
 package com.nick_toffle;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -12,7 +13,7 @@ public class hand {
     //the hand class is built from a player name, a linked list (to be changed to a HashMap) of cards,
     //and a list of melds.
     private String player;
-    private LinkedList<card> hand_cards;
+    private HashMap<Integer,card> hand_cards;
     private ArrayList<meld> meld_stack;
 
     //hand constructor.
@@ -34,11 +35,11 @@ public class hand {
 
     //sets a hand of cards (to be altered)
     public void setHand_cards(){
-        this.hand_cards = new LinkedList<card>();
+        this.hand_cards = new HashMap<Integer,card>();
     }
 
     //returns the player's hand of cards.
-    public LinkedList<card> getCards() {return this.hand_cards;}
+    public HashMap<Integer,card> getCards() {return this.hand_cards;}
 
     //sets the meld stack.
     public void setMeld_stack(){
@@ -50,6 +51,10 @@ public class hand {
         return this.meld_stack;
     }
 
+    //adds a given meld to the player's meld stack.
+    public void addMeld_to_Stack(meld m){
+        this.getMeld_stack().add(m);
+    }
     //shows the contents of a player's hand.
     public void seeHand(){
         for(int x = 0; x < this.getCards().size(); x ++){
