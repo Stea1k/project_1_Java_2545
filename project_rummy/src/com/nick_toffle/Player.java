@@ -33,6 +33,13 @@ public class Player {
     //returns the player's hand of cards.
     public HashMap<Integer,Card> getCards() {return this.hand_cards;}
 
+    public Card fromPlayerHand(int i){
+        return this.getCards().get(i);
+    }
+    public Card getDrawnCard(){
+        return this.getCards().get(this.getCards().size()+1);
+    }
+
     //sets the meld stack.
     public void setMeld_stack(){
         this.meld_stack = new ArrayList<Meld>();
@@ -54,5 +61,14 @@ public class Player {
             System.out.print(view.getCardValue() + " | " + view.getCardSuit());
         }
         System.out.println();
+    }
+
+    //given a player and a deck, adds a card from said deck to the hand of said player.
+    public void player_drawFromDeck(Deck d){
+        this.getCards().put(this.getCards().size()+1, d.draw());
+    }
+
+    //given a player hand and a discard pile, place a card from said discard pile into said player's hand.
+    public void player_drawFromDiscard(Discard d){this.getCards().put(this.getCards().size()+1,d.drawDiscard());
     }
 }

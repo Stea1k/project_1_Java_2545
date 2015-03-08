@@ -38,7 +38,7 @@ public class Game {
                 order.add(computer);
                 order.add(player1);
             }
-
+            //TODO add boolean check for end game following discard.
             while (true) {
                 turnCounter++;
                 for (Player p : order) {
@@ -53,30 +53,48 @@ public class Game {
 //                System.out.println(Integer.toString(game_start.getdeck().size()));
             }
         }
-    }
+    }public void endOfRound(ArrayList<Player> order) {
+        //calculate points for each card in each meld
+        ArrayList<Integer> scores = new ArrayList<Integer>();
+        for(Player p : order) {
+            int scoreCounter = 0;
+            for (Meld m : p.getMeld_stack()) {
+                for(int x = 0; x < m.getMeld().size(); x++) {
 
+                    if (isParsible(m.getMeld().get(x).getCardValue())) {
+                        int toScoreCounter = Integer.parseInt(m.getMeld().get(x).getCardValue());
+                        scoreCounter += toScoreCounter;
 
-    //given a player and a deck, adds a card from said deck to the hand of said player.
-    public void player_drawFromDeck(Player p, Deck d){
-        p.getCards().put(p.getCards().size()+1, d.draw());
-    }
-
-    //given a player hand and a discard pile, place a card from said discard pile into said player's hand.
-    public void player_drawFromDiscard(Player p, Discard d){
-        p.getCards().put(p.getCards().size()+1,d.drawDiscard());
-    }
-
-    //given a player's hand and a discard pile, move a card from said player's hand into said discard pile.
-    public void human_discard(Player p, Discard d){
-        HashMap<Integer,Card> h = p.getCards();
-        for(int key: h.keySet()){
-            Card c = h.get(key);
-            System.out.println(Integer.toString(key) + " | " + c.getCardValue() +" of " + c.getCardSuit());
+                    } else if (m.getMeld().get(x).getCardValue().equals("Ace")){
+                        scoreCounter += 15;
+                    } else {
+                        scoreCounter += 10;
+                    }
+                    scores.add(scoreCounter);
+                }
+            }
         }
-        System.out.println("please enter the key of the card to be discarded.");
-        Scanner s = new Scanner(System.in);
-        d.dropCard(s.nextInt(),p.getCards());
+        if (scores.get(0) > scores.get(1)) {
+            System.out.println(order.get(0) + " wins " + " with " + scores.get(0) + " points! ");
+        } else {
+            System.out.println(order.get(1) + " wins " + " with " + scores.get(1) + " points! ");
+        }
+
+
+        //display results
+        //declare winner
     }
+    public static boolean isParsible(String input) {
+        boolean parsable = true;
+        try{
+            Integer.parseInt(input);
+        }catch(NumberFormatException e) {
+            parsable = false;
+        }
+        return parsable;
+    }
+
+
     //sets a value for first player reference.
     public static Integer firstPlayer(){
         int goesFirst;
