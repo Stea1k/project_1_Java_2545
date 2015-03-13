@@ -1,7 +1,6 @@
 package com.nick_toffle;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * Created by waffle on 3/1/15.
@@ -72,5 +71,12 @@ public class Meld {
     //generates a new null meld (meld contructor)
     public Meld(){
         this.melds = new ArrayList<Card>();
+    }
+    public void showMeld(){
+		System.out.println();
+    	for(int c = 0; c < this.getMeld().size(); c ++){
+    		System.out.println(Integer.toString(c) + this.getMeld().get(c).getCardSuit() + " of " + this.getMeld().get(c).getCardValue());
+    	}
+		System.out.println();
     }
 }
