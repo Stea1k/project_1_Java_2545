@@ -8,7 +8,7 @@ import java.util.Random;
  * Created by waffle on 3/7/15.
  */
 public class Ai extends Player{
-//test
+
     public Ai() {
         setHand("AI");
         setHand_cards();
@@ -43,16 +43,58 @@ public class Ai extends Player{
             }
         }
         //check length of each suit
-            //for runs of size 3 or more
-                //build new melds of size 3 to hand size
-
-        //make a dummy meld
-        //for loop per card in player's hand:
-            //get the value of the card
-            //for each other card in the hand, check if it shares the value of the other cards in dummy meld.
-            //if it does, add it to the dummy meld
-        //if the dummy meld has a size of 3 or more, add it to the meld stack
-        //for each card in the dummy meld, remove that card from the player's hand.
+        boolean jic = true;
+        while(jic){
+        
+        	for(int i = 0; i<runMelds.length; i ++){
+            //for runs of size 3
+        		Meld temp = runMelds[i];
+        	
+        		if(temp.getMeld().size() == 3 && temp.checkRun(d)){
+        			//check if the run is viable. if it is, add it to the meld stack.
+        			this.getMeld_stack().add(temp);
+        	
+        		//if runs are greater than 3
+               	}else if(temp.getMeld().size() > 3){
+        		
+               		for(int c = 0; c < temp.getMeld().size() - 1; c ++){
+               			//make a new dummy meld with the first card of the temp meld.
+               			Meld subTemp = new Meld();
+               			subTemp.buildMeld(temp.getCard(c));
+               			Card v1 = temp.getCard(c);
+               			//for each other card available within the meld starting with the last
+        			
+               			for(int step = temp.getMeld().size()-1; step > c; step --){
+               				Card v2 = temp.getCard(step);
+               				//check if the value of the card is within 1 step of the first card.
+        				
+               				if(d.checkCard(v1,v2)){
+               					subTemp.buildMeld(temp.getCard(c));
+               					//if there is a match, add the card to the dummy meld 
+               					//set c to the position of the card added.
+               					c = temp.getMeld().size() - step;
+               				}
+               			}
+        			//if the created dummy meld subTemp is valid, add it to the meld stack.
+        			if(subTemp.getMeld().size() >= 3 && subTemp.checkRun(d)){
+        				this.addMeld_to_Stack(subTemp);
+        				//remove the cards in the meld from the player's hand.
+        				for(Card t: subTemp.getMeld()){
+        					for(int n = 0;  n < this.getCards().size(); n ++){
+        						HashMap<Integer, Card> hnd = this.getCards();
+        						if(t.getCardValue().equals(hnd.get(n).getCardValue()) && 
+        						   t.getCardSuit().equals(hnd.get(n).getCardSuit())){
+        							   this.getCards().remove(n);
+        						   }
+        					}
+        				}
+        				//set jic to false.
+        				jic = false;
+        				}
+               		}
+               	}
+        	}
+        }
     }
     public void cpuCardToMeld(Deck d){
         //adds a card in hand to a meld already existing in the meld stack.

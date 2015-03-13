@@ -78,5 +78,13 @@ class Deck{
         this.deck.remove(another);
         return new_card;
     }
+    //check if two cards are within 1 unit of value of each other.
+    public Boolean checkCard(Card c, Card a){
+    	int v1 = getValue(c.getCardValue());
+    	int v2 = getValue(a.getCardValue());
+    	if(v1 == (v2-1) || v1 == (v2+1)){
+    		return true;
+    	}else return false;
+    }
 }
 
