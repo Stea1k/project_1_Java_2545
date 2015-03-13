@@ -8,7 +8,7 @@ import java.util.Random;
  * Created by waffle on 3/7/15.
  */
 public class Ai extends Player{
-
+//test
     public Ai() {
         setHand("AI");
         setHand_cards();
