@@ -54,16 +54,26 @@ public class Human extends Player{
                 Meld m = new Meld();
                 while(true) {
                 	this.seeHand();
+                	//if the meld is of size 3 or more and valid, provide the player with the option of adding it to the stack, 
+                	
+                	//Canceling the meld, or adding more to the meld.
                 	if(m.getMeld().size() >= 3 && (m.checkRun(d) || m.checkSet())){
                 		System.out.println("You currently have a valid meld.");
                 		m.showMeld();
                 		System.out.println("Is the meld complete? [y to finish meld, q to cancel, a to add another card]");
                 		userStringInput = s.next();
-                		if(userStringInput.equals("y")){
+            			
+                		//cancels the meld.
+                		if(userStringInput.equals("q")){
+                			System.out.println("Meld cancelled");
+                			break;
+                    		
+                			//adds the meld to the meld stack.
+                		}else if(userStringInput.equals("y")){
                 			this.addMeld_to_Stack(m);
                 			break;
-                		} else if(userStringInput.equals("q")){
-                			break;
+                			
+                			//human can add to the meld.
                 		} else if(userStringInput.equals("a")){
                     		System.out.println();
                     		System.out.println("Please enter the key of the card to be added:");
@@ -73,15 +83,24 @@ public class Human extends Player{
                     					m.buildMeld(this.getCards().get(c));
                     				}
                        			}
-                			}
+                			}else {
+                    			System.out.println("Enter a valid command");
+                    		}
+                		
+                		//if the meld is size 3 or more and not valid
                 	} else if(m.getMeld().size() >= 3 && !(m.checkRun(d) || m.checkSet())){
                 		System.out.println("Your current meld is invalid.");
                 		m.showMeld();
                 		System.out.println("What would you like to do? \n" +
                 				"[q to cancel meld, r to remove a card]");
                 		userStringInput = s.next();
+                		
+                		//q for quitting the meld.
                 		if(userStringInput.equals("q")){
+                			System.out.println("Meld cancelled");
                 			break;
+                			
+                			//r to remove a card from the meld.
                 		}else if(userStringInput.equals("r")){
                 			System.out.println("Enter the position of the card in meld.");
                 			int userIntInput = s.nextInt();
@@ -90,23 +109,43 @@ public class Human extends Player{
                 					m.getMeld().remove(n);
                 				}
                 			}
+                		}else {
+                			System.out.println("Enter a valid command");
                 		}
-                	}else{
-                		System.out.println();
-                		System.out.println("Please enter the key of the card to be added:");
-                		int UserIntInput = s.nextInt();
-                		for(int c = 0; c < this.getCards().size(); c ++){
-                				if(c == UserIntInput){
-                					m.buildMeld(this.getCards().get(c));
+                		//if the hand is not size 3 or more.
+                	}else if(m.getMeld().size() < 3){
+                		m.showMeld();
+                		System.out.println("What would you like to do? \n" +
+                				"[q to cancel meld, a to add to meld, r to remove a card from the meld]");
+                		userStringInput = s.next();
+                		if(userStringInput.equals("q")){
+                			System.out.println("Meld cancelled");
+                			break;
+                		}else if(userStringInput.equals("a")){
+                			System.out.println("Please enter the key of the card to be added:");
+                			int UserIntInput = s.nextInt();
+                			for(int c = 0; c < this.getCards().size(); c ++){
+                					if(c == UserIntInput){
+                						m.buildMeld(this.getCards().get(c));
                 				}
                    			}
+                		}else if(userStringInput.equals("r")){
+                			System.out.println("Enter the position of the card in meld.");
+                			int userIntInput = s.nextInt();
+                			for(int n = 0; n < m.getMeld().size(); n ++){
+                				if(m.getCard(n).getCardValue().equals(Integer.toString(userIntInput))){
+                					m.getMeld().remove(n);
+                				}
+                			}
+                		}else {
+                			System.out.println("Enter a valid command");
                 		}
                 	}
 
-            	}catch(InputMismatchException ime) {
+            	}
+            }catch(InputMismatchException ime) {
 
             }
-
         }
     }
     public void humanCardToMeld(){
