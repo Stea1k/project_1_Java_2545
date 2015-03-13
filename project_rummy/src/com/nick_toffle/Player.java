@@ -53,6 +53,22 @@ public class Player {
     //adds a given meld to the player's meld stack.
     public void addMeld_to_Stack(Meld m){
         this.getMeld_stack().add(m);
+        this.presentMeld(m);
+		for(Card t: m.getMeld()){
+			for(int n = 0; n < this.getCards().size(); n ++){
+				HashMap<Integer, Card> hnd = this.getCards();
+				if(t.getCardValue().equals(hnd.get(n).getCardValue()) &&
+				   t.getCardSuit().equals(hnd.get(n).getCardSuit())){
+					this.getCards().remove(n);
+				}
+			}
+		}
+    }
+    public void presentMeld(Meld m){
+    	System.out.println(this.getplayer() + " has created a meld using: ");
+    	for(Card c : m.getMeld()){
+    		System.out.println(c.getCardValue() + " of " + c.getCardSuit() +"s");
+    	}
     }
     //shows the contents of a player's hand.
     public void seeHand(){
