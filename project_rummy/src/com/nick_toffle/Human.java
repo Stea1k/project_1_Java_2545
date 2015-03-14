@@ -54,7 +54,7 @@ public class Human extends Player{
     }
     //TODO finish humanMeld method
     public void humanMeld(Deck d, Scanner s) {
-        System.out.println("Would you like to make a meld? [y/n]");
+        System.out.println("Would you like to make a meld? [y to make a meld]");
         String userStringInput = s.next();
         if(userStringInput.toLowerCase().equals("y")) {
             try{

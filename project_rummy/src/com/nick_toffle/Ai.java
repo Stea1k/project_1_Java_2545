@@ -95,13 +95,12 @@ public class Ai extends Player{
         	for(int i = 0; i < handTemp.size()-1; i ++){
         		Meld m = new Meld();
         		Card startTempCard = handTemp.get(i);
-        		m.buildMeld(startTempCard);
+        		m.getMeld().add(startTempCard);
         		
         		//iterate through the cards in hand backwards for cards with identical values.
         		for(int back = handTemp.size() - 1; back > i; back --){
         			Card temp = handTemp.get(back);
-        			Card mtemp = m.getCard(i);
-        			if(temp.getCardValue().equals(mtemp.getCardValue())){
+        			if(temp.getCardValue().equals(startTempCard.getCardValue())){
         				m.buildMeld(handTemp.get(back));
         			}
         		}
