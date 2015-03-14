@@ -253,16 +253,22 @@ public class Human extends Player{
             Card c = h.get(x);
             System.out.println(x + " | " + c.getCardValue() +" of " + c.getCardSuit());
         }
-        try{
-            System.out.println("Which card would you like to discard?");
-            int stuff = s.nextInt();
-            Card disC = this.getCards().get(stuff);
-            System.out.println("You have discarded a " + disC.getCardValue()+
-            					" of " + disC.getCardSuit());
-            dis.dropCard(stuff,this.getCards());
-
-        }catch(InputMismatchException ime) {
-            System.out.println("Please stick to the number keys.");
+        while(true){
+        	try{
+            	System.out.println("Which card would you like to discard?");
+            	int stuff = s.nextInt();
+            	if(stuff >= this.getCards().size()){
+            		System.out.println("Please choose a valid card.");
+            	}else{
+            		Card disC = this.getCards().get(stuff);
+                	System.out.println("You have discarded a " + disC.getCardValue()+
+                									 " of " + disC.getCardSuit());
+                	dis.dropCard(stuff,this.getCards());
+                	break;
+            	}
+        	}catch(InputMismatchException ime) {
+            	System.out.println("Please stick to the number keys.");
+        	}
         }
     }
 }

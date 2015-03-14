@@ -27,6 +27,7 @@ public class Meld {
     public Card getCard(int c){
         return this.melds.get(c);
     }
+    
     //checks if the possible meld is a valid meld
     //first validates the run by suit, then validates by card value.
     public Boolean checkRun(Deck d){

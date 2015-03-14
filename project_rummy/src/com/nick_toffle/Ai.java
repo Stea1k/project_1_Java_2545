@@ -16,14 +16,15 @@ public class Ai extends Player{
         setScore(0);
     }
 
+    //AI turn
     public void cpuTurn(Deck d,Discard dis){
-        //TODO
-        //draw from deck
         this.player_drawFromDeck(d);
         this.cpuMeld(d);
         this.cpuCardToMeld(d);
         this.cpuDiscard(dis);
     }
+    
+    //AI method that looks for the first meld available and makes it.
     public void cpuMeld(Deck d){
         //1 dummy meld stack for all
         //4 array runs lists for cards by suit?
@@ -114,15 +115,18 @@ public class Ai extends Player{
         }
     }
     public void cpuCardToMeld(Deck d){
-        //adds a card in hand to a meld already existing in the meld stack.
+    
+    	//adds a card in hand to a meld already existing in the meld stack.
         //checks meld stack with cards in hand for possible layoffs.
             //if a match is found, the card is placed in with the meld.
-        ArrayList<Meld> stuff = this.getMeld_stack();
+        
+    	ArrayList<Meld> stuff = this.getMeld_stack();
         LinkedList<Card> handStuff = this.getCards();
         //for loop that pulls each meld from the meld stack.
         //for loop that pulls each card from the AI's hand.
         //each card pulled form AI's hand is checked against each meld
             //the first one that succeeds is applied.
+        
         for(int x = 0; x<stuff.size(); x ++){
             for(int y = 0; y< handStuff.size(); y ++){
                 //get meld x
@@ -130,15 +134,18 @@ public class Ai extends Player{
                 //check the result
                 //first success breaks loops.
                     //checker = true -> break loop.
-                Meld meld = stuff.get(x);
+        
+            	Meld meld = stuff.get(x);
                 Card c = handStuff.get(y);
                 meld.buildMeld(c);
+                
                 if(meld.checkRun(d) || meld.checkSet()){
                     this.addMeld_to_Stack(meld);
                 }
             }
         }
     }
+
     // method for cpu to discard
     public void cpuDiscard(Discard d){
         Random r = new Random();
