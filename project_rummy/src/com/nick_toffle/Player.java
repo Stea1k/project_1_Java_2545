@@ -64,6 +64,16 @@ public class Player {
 			}
 		}
     }
+    public void newLayOff(int m, Card c){
+    	this.getMeld_stack().get(m).buildMeld(c);
+    	System.out.println(" \n Your " + c.getCardValue() + " of " + c.getCardSuit() + "s has been used in a lay off. \n");
+    	for(int n = 0;n < this.getCards().size(); n ++){
+    		if(c.getCardSuit().equals(this.getCards().get(n).getCardSuit()) &&
+    		   c.getCardValue().equals(this.getCards().get(n).getCardValue())){
+    			this.getCards().remove(c);
+    		}
+    	}
+    }
     public void presentMeld(Meld m){
     	System.out.println(this.getplayer() + " has created a meld using: ");
     	for(Card c : m.getMeld()){

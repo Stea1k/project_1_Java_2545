@@ -1,5 +1,6 @@
 package com.nick_toffle;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -88,7 +89,7 @@ public class Human extends Player{
                     		}
                 		
                 		//if the meld is size 3 or more and not valid
-                	} else if(m.getMeld().size() >= 3 && !(m.checkRun(d) || m.checkSet())){
+                	} else if(m.getMeld().size() >= 3 && (!m.checkRun(d) && !m.checkSet())){
                 		System.out.println("Your current meld is invalid.");
                 		m.showMeld();
                 		System.out.println("What would you like to do? \n" +
@@ -148,8 +149,73 @@ public class Human extends Player{
             }
         }
     }
-    public void humanCardToMeld(){
-        //add a card from the hand to a chosen meld
+    public void humanCardToMeld(Deck d,Scanner s){
+        ArrayList<Meld> M = this.getMeld_stack();
+        int M_size = M.size();
+        System.out.println("\n Melds held by you: " + Integer.toString(M_size) + "\n");
+        String stringIn;
+        Integer intIn;
+        if(M_size > 0){
+        	//if there are any melds available to add to:
+        	while(true){
+        		//make layoff request
+        		System.out.println("Would you like to try adding to a meld? [y/n]");
+        		stringIn = s.next();
+        		//if no layoff is requested.
+        		if(stringIn.equals("n")){
+        			System.out.println("Laying off cancelled.");
+        			break;
+        		//if a layoff is requested
+        		}else if(stringIn.equals("y")){
+        			//present all available melds for a layoff.
+        			System.out.println("Please select a meld to add to from the list below: ");
+        			for(int m = 0; m < M_size; m ++){
+        				System.out.println("Meld " + Integer.toString(m) + ": ");
+        				M.get(m).showMeld();
+        			}
+        			//request the meld number.
+        			System.out.println("What is the number of the meld you would like to add to?");
+        			intIn = s.nextInt();
+        			//check if the meld requested exists.
+        			if(intIn > M_size || intIn <= 0){
+        				System.out.println("You must choose a meld that is available.");
+        			}else{
+        				//request a card from the player's hand.
+        				System.out.println("Please choose a card from your hand to add to meld " + Integer.toString(intIn));
+        				this.seeHand();
+        				int layInt = s.nextInt();
+        				//show the card being used to lay off.
+        				System.out.println(this.getCards().get(layInt).getCardValue() + " of " +
+        								   this.getCards().get(layInt).getCardSuit() + "s \n");
+        				System.out.println("Is this the card to be added? [y/n]");
+        				stringIn = s.next();
+        				//verify the card being used.
+        				if(stringIn.equals("n")){
+        					System.out.println("Layoff cancelled.");
+        					break;
+        				//if the card is correct, add it to the meld if the meld is valid.
+        				}else if(stringIn.equals("y")){
+        					Meld test = this.getMeld_stack().get(intIn);
+        					Card c = this.getCards().get(layInt);
+        					test.buildMeld(c);
+        					if(test.checkRun(d) || test.checkSet()){
+        						this.getMeld_stack().get(intIn).buildMeld(c);
+        						this.newLayOff(intIn, c);
+        					//if the meld is invalid, return a failure message.
+        					}else{
+        						System.out.println("Lay off failed. Invalid meld created.");
+        					}
+        				//if y or n are not chosen.
+        				}else{
+        					System.out.println("Please choose 'y' or 'n'. Layoff Cancelled.");
+        				}
+        			}
+        		}
+        	}
+        //if the size of the list of melds is 0, return a message.
+        }else if(M_size == 0){
+        	System.out.println("You have no melds to add to.");
+        }
     }
 
     //given a player's hand and a discard pile, move a card from said player's hand into said discard pile.
