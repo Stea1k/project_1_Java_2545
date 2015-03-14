@@ -17,6 +17,13 @@ public class Human extends Player{
         setMeld_stack();
     }
 
+    public void humanTurn(Deck d,Discard dis,Scanner s){
+    	this.humanDraw(d,dis,s);
+    	this.humanMeld(d, s);
+    	this.humanCardToMeld(d, s);
+    	this.humanDiscard(d, dis, s);
+    }
+    
     public void humanDraw(Deck d, Discard dis, Scanner s) {
         //prompts human player to draw from either the deck or the discards
         while(true){
@@ -155,20 +162,25 @@ public class Human extends Player{
         System.out.println("\n Melds held by you: " + Integer.toString(M_size) + "\n");
         String stringIn;
         Integer intIn;
+        
         if(M_size > 0){
         	//if there are any melds available to add to:
+        
         	while(true){
         		//make layoff request
         		System.out.println("Would you like to try adding to a meld? [y/n]");
         		stringIn = s.next();
         		//if no layoff is requested.
+        	
         		if(stringIn.equals("n")){
         			System.out.println("Laying off cancelled.");
         			break;
         		//if a layoff is requested
+        		
         		}else if(stringIn.equals("y")){
         			//present all available melds for a layoff.
         			System.out.println("Please select a meld to add to from the list below: ");
+        		
         			for(int m = 0; m < M_size; m ++){
         				System.out.println("Meld " + Integer.toString(m) + ": ");
         				M.get(m).showMeld();
@@ -177,8 +189,10 @@ public class Human extends Player{
         			System.out.println("What is the number of the meld you would like to add to?");
         			intIn = s.nextInt();
         			//check if the meld requested exists.
+        			
         			if(intIn > M_size || intIn <= 0){
         				System.out.println("You must choose a meld that is available.");
+        			
         			}else{
         				//request a card from the player's hand.
         				System.out.println("Please choose a card from your hand to add to meld " + Integer.toString(intIn));
@@ -190,28 +204,34 @@ public class Human extends Player{
         				System.out.println("Is this the card to be added? [y/n]");
         				stringIn = s.next();
         				//verify the card being used.
+        			
         				if(stringIn.equals("n")){
         					System.out.println("Layoff cancelled.");
         					break;
         				//if the card is correct, add it to the meld if the meld is valid.
+        				
         				}else if(stringIn.equals("y")){
         					Meld test = this.getMeld_stack().get(intIn);
         					Card c = this.getCards().get(layInt);
         					test.buildMeld(c);
+        				
         					if(test.checkRun(d) || test.checkSet()){
         						this.getMeld_stack().get(intIn).buildMeld(c);
         						this.newLayOff(intIn, c);
         					//if the meld is invalid, return a failure message.
+        					
         					}else{
         						System.out.println("Lay off failed. Invalid meld created.");
         					}
         				//if y or n are not chosen.
+        				
         				}else{
         					System.out.println("Please choose 'y' or 'n'. Layoff Cancelled.");
         				}
         			}
         		}
         	}
+        	
         //if the size of the list of melds is 0, return a message.
         }else if(M_size == 0){
         	System.out.println("You have no melds to add to.");
@@ -226,16 +246,12 @@ public class Human extends Player{
             Card c = h.get(key);
             System.out.println(Integer.toString(key) + " | " + c.getCardValue() +" of " + c.getCardSuit());
         }
-        while(true){
-            try{
-                System.out.println("Which card would you like to discard?");
-                dis.dropCard(s.nextInt(),this.getCards());
+        try{
+            System.out.println("Which card would you like to discard?");
+            dis.dropCard(s.nextInt(),this.getCards());
 
-            }catch(InputMismatchException ime) {
-                System.out.println("Please stick to the number keys.");
-            }
+        }catch(InputMismatchException ime) {
+            System.out.println("Please stick to the number keys.");
         }
-
-
     }
 }

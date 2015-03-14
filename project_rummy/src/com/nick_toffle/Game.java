@@ -93,7 +93,6 @@ public class Game {
         return parsable;
     }
 
-
     //sets a value for first player reference.
     public static Integer firstPlayer(){
         int goesFirst;
