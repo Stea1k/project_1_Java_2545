@@ -61,7 +61,7 @@ public class Meld {
     public Boolean checkSet(){
         Card check = this.getCard(0);
         boolean test = true;
-        if(this.melds.size()<3){
+        if(this.melds.size()<4){
         	test = false;
         }else{
         	for(int x = 0; x<this.melds.size(); x ++){

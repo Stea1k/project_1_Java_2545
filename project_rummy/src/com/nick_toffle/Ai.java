@@ -20,7 +20,7 @@ public class Ai extends Player{
         //TODO
         //draw from deck
         this.player_drawFromDeck(d);
-        //this.cpuMeld(d);
+        this.cpuMeld(d);
         this.cpuCardToMeld(d);
         this.cpuDiscard(dis);
     }
@@ -89,17 +89,23 @@ public class Ai extends Player{
         }
         //if mset is still false
         if(!mset){
+        	LinkedList<Card> handTemp = this.getCards();
+        	
         	//run through the hand of cards to build a set
-        	for(int i = 0; i < this.getCards().size()-1; i ++){
+        	for(int i = 0; i < handTemp.size()-1; i ++){
         		Meld m = new Meld();
-        		m.buildMeld(this.getCards().get(i));
-        		for(int back = this.getCards().size() - 1; back > i; back --){
-        			Card temp = this.getCards().get(back);
+        		Card startTempCard = handTemp.get(i);
+        		m.buildMeld(startTempCard);
+        		
+        		//iterate through the cards in hand backwards for cards with identical values.
+        		for(int back = handTemp.size() - 1; back > i; back --){
+        			Card temp = handTemp.get(back);
         			Card mtemp = m.getCard(i);
         			if(temp.getCardValue().equals(mtemp.getCardValue())){
-        				m.buildMeld(this.getCards().get(back));
+        				m.buildMeld(handTemp.get(back));
         			}
         		}
+        		
         		//if the set is valid, add it to the meld stack and break the loop.
         		if(m.checkSet()){
         			this.addMeld_to_Stack(m);
