@@ -44,8 +44,8 @@ public class Meld {
             int largest = d.getValue(getCard(0).getCardValue());
             int smallest = d.getValue(getCard(0).getCardValue());
             int counter = 0;
-            for (int x = 0; x < this.melds.size(); x++) {
-                counter++;
+            for (int x = 0; x < this.melds.size(); x ++) {
+                counter ++;
                 int g = d.getValue(getCard(x).getCardValue());
                 if (g < smallest) {
                     smallest = g;
@@ -53,7 +53,7 @@ public class Meld {
                     largest = g;
                 }
             }
-            if (largest - smallest != (counter - 1) && this.melds.size()>=3) {
+            if ((largest - smallest) == (counter - 1)) {
                 return true;
             } else return false;
         }
