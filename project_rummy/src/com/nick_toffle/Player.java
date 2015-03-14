@@ -42,7 +42,7 @@ public class Player {
     
     //returns the card last drawn.
     public Card getDrawnCard(){
-        return this.getCards().get(this.getCards().size());
+        return this.getCards().get(this.getCards().size()-1);
     }
 
     //sets the meld stack.
@@ -107,7 +107,7 @@ public class Player {
     public void seeHand(){
         for(int x = 0; x < this.getCards().size(); x ++){
             Card view = this.getCards().get(x);
-            System.out.print(view.getCardValue() + " | " + view.getCardSuit());
+            System.out.print("| " + view.getCardValue() + " of " + view.getCardSuit() + "s |");
         }
         System.out.println();
     }

@@ -20,7 +20,8 @@ public class Meld {
 
     //adds a card to a possible meld
     public void buildMeld(Card c){
-        this.melds.add(c);
+    	Card newC = c;
+        this.melds.add(newC);
     }
     //gets a card from a meld
     public Card getCard(int c){
@@ -51,7 +52,7 @@ public class Meld {
                     largest = g;
                 }
             }
-            if (largest - smallest != (counter - 1)) {
+            if (largest - smallest != (counter - 1) && this.melds.size()>=3) {
                 return true;
             } else return false;
         }
@@ -60,11 +61,15 @@ public class Meld {
     public Boolean checkSet(){
         Card check = this.getCard(0);
         boolean test = true;
-        for(int x = 0; x<this.melds.size(); x ++){
-            if(this.getCard(x).getCardValue() != check.getCardValue()){
-                test = false;
-                break;
-            }
+        if(this.melds.size()<3){
+        	test = false;
+        }else{
+        	for(int x = 0; x<this.melds.size(); x ++){
+        		if(this.getCard(x).getCardValue() != check.getCardValue()){
+        			test = false;
+        			break;
+        		}
+        	}
         }
         return test;
     }

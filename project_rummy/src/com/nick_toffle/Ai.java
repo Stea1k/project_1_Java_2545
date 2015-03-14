@@ -33,13 +33,17 @@ public class Ai extends Player{
         //TODO run setup:
         //make 4 dummy melds per suit
         Meld[] runMelds = new Meld[4];
+        runMelds[0] = new Meld();
+        runMelds[1] = new Meld();
+        runMelds[2] = new Meld();
+        runMelds[3] = new Meld();
    		Boolean mset = false;
         //for each card in hand, check the suit of said card and place it in the relevant meld
    		LinkedList<Card> hand = this.getCards();
         for(int i = 0; i < hand.size(); i ++){
-            for(int s = 0; s<d.value.length; s ++) {
-                Card c = fromPlayerHand(i + 1);
-                if(c.getCardValue().equals(d.value[s])){
+            for(int s = 0; s<d.suit.length; s ++) {
+                Card c = fromPlayerHand(i);
+                if(c.getCardSuit().equals(d.suit[s])){
                     runMelds[s].buildMeld(c);
                 }
             }
@@ -86,11 +90,11 @@ public class Ai extends Player{
         //if mset is still false
         if(!mset){
         	//run through the hand of cards to build a set
-        	for(int i = 0; i < this.getCards().size(); i ++){
+        	for(int i = 0; i < this.getCards().size()-1; i ++){
         		Meld m = new Meld();
         		m.buildMeld(this.getCards().get(i));
-        		for(int back = this.getCards().size() - 1; back >= i; back --){
-        			if(this.getCards().get(back).getCardValue().equals(m.getCard(i))){
+        		for(int back = this.getCards().size() - 1; back > i; back --){
+        			if(this.getCards().get(back).getCardValue().equals(m.getCard(i).getCardValue())){
         				m.buildMeld(this.getCards().get(back));
         			}
         		}
@@ -133,11 +137,13 @@ public class Ai extends Player{
         Random r = new Random();
         int handSize = r.nextInt(this.getCards().size());
 
-        if (handSize < 0) {
+        if (handSize > 0) {
             d.dropCard(handSize, this.getCards());
-            System.out.println("The CPU discarded the " + d.seeTop());
+            System.out.println("The CPU discarded the " + d.seeTop().getCardValue() +
+            					" of " + d.seeTop().getCardSuit() + "s");
         } else {
-            System.out.println("The CPU discarded the " + d.seeTop());
+            System.out.println("The CPU discarded the " + d.seeTop().getCardValue() +
+					" of " + d.seeTop().getCardSuit() + "s");
             System.out.println("The CPU has discarded it's last card. The hand is over!");
 
         }

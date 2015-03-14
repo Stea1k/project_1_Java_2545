@@ -34,11 +34,16 @@ public class Human extends Player{
                 if (userInput==1){
                     this.player_drawFromDeck(d);
                     Card dummyCard = getDrawnCard();
-                    System.out.println("You drew a " + dummyCard + ".");
+                    System.out.println("You drew a " + dummyCard.getCardValue() + 
+                    					" of " +dummyCard.getCardSuit()+ ".");
+                    break;
                 } else if (userInput==2){
                     this.player_drawFromDiscard(dis);
                     Card dummyCardFromDiscard = getDrawnCard();
-                    System.out.println("You drew a " + dummyCardFromDiscard + ".");
+                    System.out.println("You drew a " + 
+                    					dummyCardFromDiscard.getCardValue() +" of "+
+                    					dummyCardFromDiscard.getCardSuit() + ".");
+                    break;
                 } else {
                     System.out.println("Please stick to the number keys. ");
                 }
@@ -249,7 +254,11 @@ public class Human extends Player{
         }
         try{
             System.out.println("Which card would you like to discard?");
-            dis.dropCard(s.nextInt(),this.getCards());
+            int stuff = s.nextInt();
+            Card disC = this.getCards().get(stuff);
+            System.out.println("You have discarded a " + disC.getCardValue()+
+            					" of " + disC.getCardSuit());
+            dis.dropCard(stuff,this.getCards());
 
         }catch(InputMismatchException ime) {
             System.out.println("Please stick to the number keys.");
