@@ -18,48 +18,51 @@ public class Game {
         if (start.equals("n")) {
             System.out.println("Thanks for your time!");
         } else if (start.equals("y")) {
-            Deck game_start = new Deck("game1");
-            Discard discardPile = new Discard();
-            Human player1 = new Human("player1");
-            Ai computer = new Ai();
-            for (int x = 0; x < 5; x++) {
-                player1.getCards().put(x, game_start.draw());
-                computer.getCards().put(x, game_start.draw());
-            }
-            discardPile.addCard(game_start.draw());
-            int turnCounter = 0;
-            int first = firstPlayer();
-            ArrayList<Player> order = new ArrayList<Player>();
-            if (first < 1) {
-                order.add(player1);
-                order.add(computer);
-            } else {
-                order.add(computer);
-                order.add(player1);
-            }
-            //TODO add boolean check for end game following discard.
-            while (turnCounter >= 0) {
-                turnCounter ++;
-                for (Player p : order) {
-                    if (p.equals(player1)) {
-                        //TODO human turn order
-                    	System.out.println("\n turn " + Integer.toString(turnCounter) + "\n");
-                    	player1.humanTurn(game_start, discardPile, s);
-                    } else {
-                        //TODO AI turn order
-                    	System.out.println("\n turn " + Integer.toString(turnCounter) + "\n");
-                    	computer.cpuTurn(game_start,discardPile);
-                    }
-                	if(!nocards(p)){
-                		turnCounter = -1;
-                		break;
+        	System.out.println("What will be the point limit? [50/100]");
+        	int points = s.nextInt();
+        	if(points == 50 || points == 100){while(true){
+        		Deck game_start = new Deck("game1");
+        		Discard discardPile = new Discard();
+        		Human player1 = new Human("player1");
+        		Ai computer = new Ai();
+            	for (int x = 0; x < 5; x++) {
+                	player1.getCards().put(x, game_start.draw());
+                	computer.getCards().put(x, game_start.draw());
+            	}
+            	discardPile.addCard(game_start.draw());
+            	int turnCounter = 0;
+            	int first = firstPlayer();
+            	ArrayList<Player> order = new ArrayList<Player>();
+            	if (first < 1) {
+                	order.add(player1);
+                	order.add(computer);
+            	} else {
+                	order.add(computer);
+                	order.add(player1);
+            	}
+            	//TODO add boolean check for end game following discard.
+            	while (turnCounter >= 0) {
+                	turnCounter ++;
+                	for (Player p : order) {
+                		System.out.println("\n turn " + Integer.toString(turnCounter) + "\n");
+                    	if (p.equals(player1)) {
+                    	//TODO human turn order
+                    		player1.humanTurn(game_start, discardPile, s);
+                    	} else {
+                        	//TODO AI turn order
+                    		computer.cpuTurn(game_start,discardPile);
+                    	}
+                		if(!nocards(p)){
+                			turnCounter = -1;
+                			break;
+                		}
                 	}
-                }
 
-//                System.out.println();
-//                System.out.println(Integer.toString(game_start.getdeck().size()));
-            }
-            endOfRound(order);
+//              	  System.out.println();
+//              	  System.out.println(Integer.toString(game_start.getdeck().size()));
+            	}
+            	endOfRound(order,points,s);
+        	}}
         }
         s.close();
     }
@@ -68,7 +71,7 @@ public class Game {
     		return false;
     	}else return true;
     }
-    public static void endOfRound(ArrayList<Player> order) {
+    public static Boolean endOfRound(ArrayList<Player> order,int Points,Scanner scan) {
         //calculate points for each card in each meld
         ArrayList<Integer> scores = new ArrayList<Integer>();
         for(Player p : order) {
@@ -89,12 +92,23 @@ public class Game {
                 }
             }
         }
-        if (scores.get(0) > scores.get(1)) {
-            System.out.println(order.get(0) + " wins " + " with " + scores.get(0) + " points! ");
-        } else {
-            System.out.println(order.get(1) + " wins " + " with " + scores.get(1) + " points! ");
+        for(int s = 0; s < 2; s ++){
+        	order.get(s).addToScore(scores.get(s));
+            System.out.println(order.get(s) + " has " + scores.get(s) + " points. \n");
         }
-
+        if (scores.get(0) > scores.get(1) && scores.get(0) >= Points) {
+            System.out.println(order.get(0) + " wins " + " with " + scores.get(0) + " points! ");
+            return false;
+        } else if(scores.get(1) > scores.get(0) && scores.get(1) >= Points){
+            System.out.println(order.get(1) + " wins " + " with " + scores.get(1) + " points! ");
+            return false;
+        }else {
+        	System.out.println("Would you like to continue playing? [y/n]");
+        	String stringIn = scan.next();
+        	if(stringIn.equals("n")){
+        		return false;
+        	}else return true;
+        }
 
         //display results
         //declare winner
