@@ -44,7 +44,11 @@ public class Game {
             	while (turnCounter >= 0) {
                 	turnCounter ++;
                 	for (Player p : order) {
+                		System.out.println("_____________________________________________________________");
                 		System.out.println("\n" + "turn" + Integer.toString(turnCounter) + "\n");
+                    	System.out.println("Top discard: " + 
+                    						discardPile.seeTop().getCardValue() + " of " +
+                    						discardPile.seeTop().getCardSuit()+"s");
                     	System.out.println("\n" + p.getplayer());
                     	System.out.println("\n" + "Hand size: " + Integer.toString(p.getCards().size()));
                     	p.seeHand();

@@ -147,7 +147,8 @@ public class Human extends Player{
                 			System.out.println("Enter the position of the card in meld.");
                 			int userIntInput = s.nextInt();
                 			for(int n = 0; n < m.getMeld().size(); n ++){
-                				if(m.getCard(n).getCardValue().equals(Integer.toString(userIntInput))){
+                				if(m.getCard(n).getCardValue().equals(m.getCard(userIntInput).getCardValue()) && 
+                				   m.getCard(n).getCardSuit().equals(m.getCard(userIntInput).getCardSuit())){
                 					m.getMeld().remove(n);
                 				}
                 			}

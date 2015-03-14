@@ -80,7 +80,9 @@ public class Meld {
     public void showMeld(){
 		System.out.println();
     	for(int c = 0; c < this.getMeld().size(); c ++){
-    		System.out.println(Integer.toString(c) + this.getMeld().get(c).getCardSuit() + " of " + this.getMeld().get(c).getCardValue());
+    		System.out.println(Integer.toString(c) + " | "+
+    							this.getMeld().get(c).getCardValue() + " of " + 
+    							this.getMeld().get(c).getCardSuit());
     	}
 		System.out.println();
     }

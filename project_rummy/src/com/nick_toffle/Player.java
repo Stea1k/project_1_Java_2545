@@ -107,7 +107,9 @@ public class Player {
     public void seeHand(){
         for(int x = 0; x < this.getCards().size(); x ++){
             Card view = this.getCards().get(x);
-            System.out.print("| " + view.getCardValue() + " of " + view.getCardSuit() + "s |");
+            System.out.println(Integer.toString(x) + "| " + 
+            					view.getCardValue() + " of " + 
+            					view.getCardSuit() + "s |");
         }
         System.out.println();
     }

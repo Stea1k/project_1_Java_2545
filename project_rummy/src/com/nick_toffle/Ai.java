@@ -20,7 +20,7 @@ public class Ai extends Player{
         //TODO
         //draw from deck
         this.player_drawFromDeck(d);
-        this.cpuMeld(d);
+        //this.cpuMeld(d);
         this.cpuCardToMeld(d);
         this.cpuDiscard(dis);
     }
@@ -94,7 +94,9 @@ public class Ai extends Player{
         		Meld m = new Meld();
         		m.buildMeld(this.getCards().get(i));
         		for(int back = this.getCards().size() - 1; back > i; back --){
-        			if(this.getCards().get(back).getCardValue().equals(m.getCard(i).getCardValue())){
+        			Card temp = this.getCards().get(back);
+        			Card mtemp = m.getCard(i);
+        			if(temp.getCardValue().equals(mtemp.getCardValue())){
         				m.buildMeld(this.getCards().get(back));
         			}
         		}
@@ -136,17 +138,9 @@ public class Ai extends Player{
     public void cpuDiscard(Discard d){
         Random r = new Random();
         int handSize = r.nextInt(this.getCards().size());
-
-        if (handSize > 0) {
-            d.dropCard(handSize, this.getCards());
-            System.out.println("The CPU discarded the " + d.seeTop().getCardValue() +
-            					" of " + d.seeTop().getCardSuit() + "s");
-        } else {
-            System.out.println("The CPU discarded the " + d.seeTop().getCardValue() +
-					" of " + d.seeTop().getCardSuit() + "s");
-            System.out.println("The CPU has discarded it's last card. The hand is over!");
-
-        }
+        d.dropCard(handSize, this.getCards());
+        System.out.println("The CPU discarded the " + d.seeTop().getCardValue() +
+        					" of " + d.seeTop().getCardSuit() + "s");
     }
 }
 
