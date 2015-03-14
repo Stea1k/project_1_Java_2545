@@ -17,7 +17,7 @@ public class Discard {
 
     //returns the value and suit of the top card of the given discard pile.
     public Card seeTop(){
-        Card top = this.discards.peek();
+        Card top = this.discards.get(this.discards.size()-1);
         return top;
     }
 
@@ -26,20 +26,22 @@ public class Discard {
     }
     //pops the top card from the given discard pile.
     public Card drawDiscard(){
-        Card top = this.discards.pop();
+        Card top = this.getDiscards().get(this.getDiscards().size() - 1);
         return top;
     }
+    
+    //might be functional?
     public void addCard(Card c){
         this.discards.add(c);
     }
 
     //method for discarding a card from a player's hand.
-    public void dropCard(Integer i,LinkedList<Card> linkedList){
-        for(int x = 0; x < linkedList.size(); x ++){
+    public void dropCard(Integer i,Player p){
+        for(int x = 0; x < p.getCards().size(); x ++){
             if(i == x){
-                Card newDiscard = new Card(linkedList.get(i).getCardValue(),linkedList.get(i).getCardSuit());
-                this.addCard(newDiscard);
-                linkedList.remove(x);
+                Card newDiscard = new Card(p.getCards().get(i).getCardValue(),p.getCards().get(i).getCardSuit());
+                this.getDiscards().add(newDiscard);
+                p.getCards().remove(x);
             }
         }
     }

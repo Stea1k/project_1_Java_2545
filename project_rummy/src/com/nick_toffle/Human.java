@@ -19,7 +19,9 @@ public class Human extends Player{
     }
 
     public void humanTurn(Deck d,Discard dis,Scanner s){
+    	this.seeHand();
     	this.humanDraw(d,dis,s);
+        this.seeHand();
     	this.humanMeld(d, s);
     	this.humanCardToMeld(d, s);
     	this.humanDiscard(d, dis, s);
@@ -263,7 +265,7 @@ public class Human extends Player{
             		Card disC = this.getCards().get(stuff);
                 	System.out.println("You have discarded a " + disC.getCardValue()+
                 									 " of " + disC.getCardSuit());
-                	dis.dropCard(stuff,this.getCards());
+                	dis.dropCard(stuff,this);
                 	break;
             	}
         	}catch(InputMismatchException ime) {

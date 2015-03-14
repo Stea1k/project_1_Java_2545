@@ -150,7 +150,7 @@ public class Ai extends Player{
     public void cpuDiscard(Discard d){
         Random r = new Random();
         int handSize = r.nextInt(this.getCards().size());
-        d.dropCard(handSize, this.getCards());
+        d.dropCard(handSize, this);
         System.out.println("The CPU discarded the " + d.seeTop().getCardValue() +
         					" of " + d.seeTop().getCardSuit() + "s");
     }

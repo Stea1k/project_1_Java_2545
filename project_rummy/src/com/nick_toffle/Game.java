@@ -51,7 +51,7 @@ public class Game {
                     						discardPile.seeTop().getCardSuit()+"s");
                     	System.out.println("\n" + p.getplayer());
                     	System.out.println("\n" + "Hand size: " + Integer.toString(p.getCards().size()));
-                    	p.seeHand();
+//                    	p.seeHand();
                 		if (p.equals(player1)) {
                     	//TODO human turn order
                     		player1.humanTurn(game_start, discardPile, s);

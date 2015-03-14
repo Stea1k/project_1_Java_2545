@@ -117,9 +117,9 @@ public class Player {
     //given a player and a deck, adds a card from said deck to the hand of said player.
     public void player_drawFromDeck(Deck d){
     	Card c = d.draw();
-    	System.out.println(c.getCardValue() + " | " + c.getCardSuit() + "\n");
+//    	System.out.println(c.getCardValue() + " of " + c.getCardSuit() + "\n");
         this.getCards().add(c);
-        this.seeHand();
+//        this.seeHand();
     }
 
     //given a player hand and a discard pile, place a card from said discard pile into said player's hand.
