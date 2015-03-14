@@ -26,8 +26,8 @@ public class Game {
         		Human player1 = new Human("player1");
         		Ai computer = new Ai();
             	for (int x = 0; x < 5; x++) {
-                	player1.getCards().put(x, game_start.draw());
-                	computer.getCards().put(x, game_start.draw());
+                	player1.getCards().add(game_start.draw());
+                	computer.getCards().add(game_start.draw());
             	}
             	discardPile.addCard(game_start.draw());
             	int turnCounter = 0;
@@ -44,8 +44,11 @@ public class Game {
             	while (turnCounter >= 0) {
                 	turnCounter ++;
                 	for (Player p : order) {
-                		System.out.println("\n turn " + Integer.toString(turnCounter) + "\n");
-                    	if (p.equals(player1)) {
+                		System.out.println("\n" + "turn" + Integer.toString(turnCounter) + "\n");
+                    	System.out.println("\n" + p.getplayer());
+                    	System.out.println("\n" + "Hand size: " + Integer.toString(p.getCards().size()));
+                    	p.seeHand();
+                		if (p.equals(player1)) {
                     	//TODO human turn order
                     		player1.humanTurn(game_start, discardPile, s);
                     	} else {

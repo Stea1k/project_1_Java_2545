@@ -1,7 +1,7 @@
 package com.nick_toffle;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -35,10 +35,10 @@ public class Ai extends Player{
         Meld[] runMelds = new Meld[4];
    		Boolean mset = false;
         //for each card in hand, check the suit of said card and place it in the relevant meld
-        HashMap<Integer,Card> hand = this.getCards();
+   		LinkedList<Card> hand = this.getCards();
         for(int i = 0; i < hand.size(); i ++){
             for(int s = 0; s<d.value.length; s ++) {
-                Card c = fromPlayerHand(i);
+                Card c = fromPlayerHand(i + 1);
                 if(c.getCardValue().equals(d.value[s])){
                     runMelds[s].buildMeld(c);
                 }
@@ -107,7 +107,7 @@ public class Ai extends Player{
         //checks meld stack with cards in hand for possible layoffs.
             //if a match is found, the card is placed in with the meld.
         ArrayList<Meld> stuff = this.getMeld_stack();
-        HashMap<Integer,Card> handStuff = this.getCards();
+        LinkedList<Card> handStuff = this.getCards();
         //for loop that pulls each meld from the meld stack.
         //for loop that pulls each card from the AI's hand.
         //each card pulled form AI's hand is checked against each meld

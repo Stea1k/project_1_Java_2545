@@ -1,6 +1,5 @@
 package com.nick_toffle;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -35,12 +34,12 @@ public class Discard {
     }
 
     //method for discarding a card from a player's hand.
-    public void dropCard(Integer i,HashMap<Integer, Card> map){
-        for(int key: map.keySet()){
-            if(i == key){
-                Card newDiscard = new Card(map.get(i).getCardValue(),map.get(i).getCardSuit());
+    public void dropCard(Integer i,LinkedList<Card> linkedList){
+        for(int x = 0; x < linkedList.size(); x ++){
+            if(i == x){
+                Card newDiscard = new Card(linkedList.get(i).getCardValue(),linkedList.get(i).getCardSuit());
                 this.addCard(newDiscard);
-                map.remove(key);
+                linkedList.remove(x);
             }
         }
     }

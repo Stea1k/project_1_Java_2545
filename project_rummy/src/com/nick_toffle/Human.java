@@ -1,8 +1,8 @@
 package com.nick_toffle;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -29,8 +29,8 @@ public class Human extends Player{
         //prompts human player to draw from either the deck or the discards
         while(true){
             try{
-                int userInput = s.nextInt();
                 System.out.println("Would you like to draw from the deck(1) or the discard pile(2)? ");
+                int userInput = s.nextInt();
                 if (userInput==1){
                     this.player_drawFromDeck(d);
                     Card dummyCard = getDrawnCard();
@@ -242,10 +242,10 @@ public class Human extends Player{
     //given a player's hand and a discard pile, move a card from said player's hand into said discard pile.
     public void humanDiscard(Deck d, Discard dis, Scanner s) {
         //discard a card from the human player's hand
-        HashMap<Integer,Card> h = this.getCards();
-        for(int key: h.keySet()){
-            Card c = h.get(key);
-            System.out.println(Integer.toString(key) + " | " + c.getCardValue() +" of " + c.getCardSuit());
+    	LinkedList<Card> h = this.getCards();
+        for(int x = 0; x < h.size(); x ++){
+            Card c = h.get(x);
+            System.out.println(x + " | " + c.getCardValue() +" of " + c.getCardSuit());
         }
         try{
             System.out.println("Which card would you like to discard?");

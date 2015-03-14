@@ -1,7 +1,7 @@
 package com.nick_toffle;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * Created by waffle on 2/21/15.
@@ -13,7 +13,7 @@ public class Player {
     //the player class is built from a player name, a linked list (to be changed to a HashMap) of cards,
     //and a list of melds.
     private String player;
-    private HashMap<Integer,Card> hand_cards;
+    private LinkedList<Card> hand_cards;
     private ArrayList<Meld> meld_stack;
     private int score;
     
@@ -29,11 +29,11 @@ public class Player {
 
     //sets a hand of cards (to be altered)
     public void setHand_cards(){
-        this.hand_cards = new HashMap<Integer,Card>();
+        this.hand_cards = new LinkedList<Card>();
     }
 
     //returns the player's hand of cards.
-    public HashMap<Integer,Card> getCards() {return this.hand_cards;}
+    public LinkedList<Card> getCards() {return this.hand_cards;}
 
     //returns a card from the player's hand
     public Card fromPlayerHand(int i){
@@ -42,7 +42,7 @@ public class Player {
     
     //returns the card last drawn.
     public Card getDrawnCard(){
-        return this.getCards().get(this.getCards().size()+1);
+        return this.getCards().get(this.getCards().size());
     }
 
     //sets the meld stack.
@@ -78,7 +78,7 @@ public class Player {
         this.presentMeld(m);
 		for(Card t: m.getMeld()){
 			for(int n = 0; n < this.getCards().size(); n ++){
-				HashMap<Integer, Card> hnd = this.getCards();
+				LinkedList<Card> hnd = this.getCards();
 				if(t.getCardValue().equals(hnd.get(n).getCardValue()) &&
 				   t.getCardSuit().equals(hnd.get(n).getCardSuit())){
 					this.getCards().remove(n);
@@ -114,10 +114,13 @@ public class Player {
 
     //given a player and a deck, adds a card from said deck to the hand of said player.
     public void player_drawFromDeck(Deck d){
-        this.getCards().put(this.getCards().size()+1, d.draw());
+    	Card c = d.draw();
+    	System.out.println(c.getCardValue() + " | " + c.getCardSuit() + "\n");
+        this.getCards().add(c);
+        this.seeHand();
     }
 
     //given a player hand and a discard pile, place a card from said discard pile into said player's hand.
-    public void player_drawFromDiscard(Discard d){this.getCards().put(this.getCards().size()+1,d.drawDiscard());
+    public void player_drawFromDiscard(Discard d){this.getCards().add(d.drawDiscard());
     }
 }
