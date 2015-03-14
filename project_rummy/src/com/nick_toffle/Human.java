@@ -15,6 +15,7 @@ public class Human extends Player{
         setHand(name);
         setHand_cards();
         setMeld_stack();
+        setScore(0);
     }
 
     public void humanTurn(Deck d,Discard dis,Scanner s){

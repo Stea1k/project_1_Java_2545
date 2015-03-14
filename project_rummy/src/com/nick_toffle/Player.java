@@ -15,6 +15,8 @@ public class Player {
     private String player;
     private HashMap<Integer,Card> hand_cards;
     private ArrayList<Meld> meld_stack;
+    private int score;
+    
     //sets the player's name.
     public void setHand(String name){
         this.player = name;
@@ -33,9 +35,12 @@ public class Player {
     //returns the player's hand of cards.
     public HashMap<Integer,Card> getCards() {return this.hand_cards;}
 
+    //returns a card from the player's hand
     public Card fromPlayerHand(int i){
         return this.getCards().get(i);
     }
+    
+    //returns the card last drawn.
     public Card getDrawnCard(){
         return this.getCards().get(this.getCards().size()+1);
     }
@@ -50,6 +55,23 @@ public class Player {
         return this.meld_stack;
     }
 
+    //sets the player's score
+    public void setScore(int i){
+    	this.score = i;
+    }
+    
+    //gets the player's score
+    public Integer getScore(){
+    	return this.score;
+    }
+    
+    //adds to the player's score
+    public void addToScore(int i){
+    	int s = this.getScore();
+    	s += i;
+    	this.setScore(s);
+    }
+    
     //adds a given meld to the player's meld stack.
     public void addMeld_to_Stack(Meld m){
         this.getMeld_stack().add(m);
@@ -64,6 +86,7 @@ public class Player {
 			}
 		}
     }
+    
     public void newLayOff(int m, Card c){
     	this.getMeld_stack().get(m).buildMeld(c);
     	System.out.println(" \n Your " + c.getCardValue() + " of " + c.getCardSuit() + "s has been used in a lay off. \n");

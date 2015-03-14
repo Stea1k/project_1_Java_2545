@@ -38,21 +38,37 @@ public class Game {
                 order.add(player1);
             }
             //TODO add boolean check for end game following discard.
-            while (true) {
-                turnCounter++;
+            while (turnCounter >= 0) {
+                turnCounter ++;
                 for (Player p : order) {
                     if (p.equals(player1)) {
                         //TODO human turn order
+                    	System.out.println("\n turn " + Integer.toString(turnCounter) + "\n");
+                    	player1.humanTurn(game_start, discardPile, s);
                     } else {
                         //TODO AI turn order
+                    	System.out.println("\n turn " + Integer.toString(turnCounter) + "\n");
+                    	computer.cpuTurn(game_start,discardPile);
                     }
+                	if(!nocards(p)){
+                		turnCounter = -1;
+                		break;
+                	}
                 }
 
 //                System.out.println();
 //                System.out.println(Integer.toString(game_start.getdeck().size()));
             }
+            endOfRound(order);
         }
-    }public void endOfRound(ArrayList<Player> order) {
+        s.close();
+    }
+    public static Boolean nocards(Player p){
+    	if(p.getCards().isEmpty()){
+    		return false;
+    	}else return true;
+    }
+    public static void endOfRound(ArrayList<Player> order) {
         //calculate points for each card in each meld
         ArrayList<Integer> scores = new ArrayList<Integer>();
         for(Player p : order) {

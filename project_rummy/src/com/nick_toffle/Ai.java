@@ -13,6 +13,7 @@ public class Ai extends Player{
         setHand("AI");
         setHand_cards();
         setMeld_stack();
+        setScore(0);
     }
 
     public void cpuTurn(Deck d,Discard dis){
