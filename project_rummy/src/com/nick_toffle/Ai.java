@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 /**
- * Created by waffle on 3/7/15.
+ * Created by Nick Toffle and Casey Holmgren on 2/21/15.
  */
 public class Ai extends Player{
 

@@ -3,7 +3,7 @@ package com.nick_toffle;
 import java.util.ArrayList;
 
 /**
- * Created by waffle on 3/1/15.
+ * Created by Nick Toffle and Casey Holmgren on 2/21/15.
  * This class involves the methods necessary for creating and testing melds.
  */
 public class Meld {

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
- * Created by waffle on 2/21/15.
- *This class contains the player-specific methods and hand-related methods.
+ * Created by Nick Toffle and Casey Holmgren on 2/21/15.
+ * Class: Player
  */
 
 public class Player {
@@ -87,6 +87,7 @@ public class Player {
 		}
     }
     
+    //adds a card to a meld already in existence.
     public void newLayOff(int m, Card c){
     	this.getMeld_stack().get(m).buildMeld(c);
     	System.out.println(" \n Your " + c.getCardValue() + " of " + c.getCardSuit() + "s has been used in a lay off. \n");
@@ -97,6 +98,8 @@ public class Player {
     		}
     	}
     }
+    
+    //shows all cards in the meld.
     public void presentMeld(Meld m){
     	System.out.println(this.getplayer() + " has created a meld using: ");
     	for(Card c : m.getMeld()){

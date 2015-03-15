@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
- * Created by waffle on 3/7/15.
+ * Created by Nick Toffle and Casey Holmgren on 2/21/15.
  */
 public class Human extends Player{
 

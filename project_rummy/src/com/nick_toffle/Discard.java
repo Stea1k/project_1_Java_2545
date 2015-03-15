@@ -3,7 +3,7 @@ package com.nick_toffle;
 import java.util.LinkedList;
 
 /**
- * Created by waffle on 3/1/15.
+ * Created by Nick Toffle and Casey Holmgren on 2/21/15.
  * This is the discard pile class. It provides the methods necessary for viewing and managing the discard pile.
  */
 public class Discard {

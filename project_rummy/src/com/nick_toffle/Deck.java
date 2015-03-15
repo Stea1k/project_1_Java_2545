@@ -3,7 +3,7 @@ package com.nick_toffle;
 import java.util.LinkedList;
 import java.util.Random;
 
-/*
+/*Created by Nick Toffle and Casey Holmgren on 2/21/15.
 * This is the deck class. many of the more basic methods for creating, storing, and managing a deck are in here.
 * */
 
