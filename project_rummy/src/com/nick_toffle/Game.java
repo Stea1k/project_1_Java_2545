@@ -63,6 +63,7 @@ public class Game {
                 			turnCounter = -1;
                 			break;
                 		}
+                		deckCheck(game_start,discardPile);
                 	}
 
 //              	  System.out.println();
@@ -141,5 +142,10 @@ public class Game {
     //returns a player's hand size as an integer.
     public static Integer handSize(Player name){
         return name.getCards().size();
+    }
+    public static void deckCheck(Deck d, Discard dis){
+    	if(d.getdeck().isEmpty()){
+    		d.setDeck(dis.getDiscards());
+    	}
     }
 }
